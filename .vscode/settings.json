@@ -1,0 +1,9 @@
+{
+    "python.languageServer": "None",
+    "python.analysis.extraPaths": [
+      "/home/ubuntu/odoo18",
+      "/home/ubuntu/odoo18/addons"
+    ],
+    "python.analysis.useLibraryCodeForTypes": true
+  }
+  

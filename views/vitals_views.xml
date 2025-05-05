@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View for Vitals -->
+    <record id="view_vitals_list" model="ir.ui.view">
+        <field name="name">ophthalmology.vitals.list</field>
+        <field name="model">ophthalmology.vitals</field>
+        <field name="arch" type="xml">
+            <list string="Vitals" editable="bottom">
+                <field name="patient_id"/>
+                <field name="blood_pressure"/>
+                <field name="heart_rate"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Vitals -->
+    <record id="view_vitals_form" model="ir.ui.view">
+        <field name="name">ophthalmology.vitals.form</field>
+        <field name="model">ophthalmology.vitals</field>
+        <field name="arch" type="xml">
+            <form string="Vitals">
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="blood_pressure"/>
+                        <field name="heart_rate"/>
+                    </group>
+                    <group>
+                        <field name="vision_right"/>
+                        <field name="vision_left"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Vitals -->
+    <record id="ophthalmology_action_vitals" model="ir.actions.act_window">
+        <field name="name">Vitals</field>
+        <field name="res_model">ophthalmology.vitals</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_vitals_list"/>
+    </record>
+</odoo>

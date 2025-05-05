@@ -1,0 +1,55 @@
+<odoo>
+  <!-- Tree View for Examinations -->
+  <record id="view_ophthalmology_examination_tree" model="ir.ui.view">
+    <field name="name">ophthalmology.examination.tree</field>
+    <field name="model">ophthalmology.examination</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="date"/>
+        <field name="patient_id"/>
+        <field name="doctor_name"/>
+        <field name="visual_acuity_right"/>
+        <field name="visual_acuity_left"/>
+        <field name="intraocular_pressure_right"/>
+        <field name="intraocular_pressure_left"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form View for Examinations -->
+  <record id="view_ophthalmology_examination_form" model="ir.ui.view">
+    <field name="name">ophthalmology.examination.form</field>
+    <field name="model">ophthalmology.examination</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="date"/>
+            <field name="appointment_id"/>
+            <!-- Conditional Read-Only Logic -->
+            <field name="patient_id" readonly="1" groups="base.group_user" />
+            <field name="doctor_name"/>
+          </group>
+          <group string="Visual Acuity">
+            <field name="visual_acuity_right"/>
+            <field name="visual_acuity_left"/>
+          </group>
+          <group string="Intraocular Pressure">
+            <field name="intraocular_pressure_right"/>
+            <field name="intraocular_pressure_left"/>
+          </group>
+          <field name="eye_condition_notes" widget="text"/>
+          <field name="attachment_ids" widget="many2many_binary"/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action for Examinations -->
+  <record id="ophthalmology_action_examinations" model="ir.actions.act_window">
+    <field name="name">Examinations</field>
+    <field name="res_model">ophthalmology.examination</field>
+    <field name="view_mode">list,form</field>
+    <field name="context">{}</field>
+  </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ophthalmology_patient,ophthalmology.patient,model_ophthalmology_patient,base.group_user,1,1,1,1
+access_ophthalmology_appointment,ophthalmology.appointment,model_ophthalmology_appointment,base.group_user,1,1,1,1
+access_ophthalmology_prescription,ophthalmology.prescription,model_ophthalmology_prescription,base.group_user,1,1,1,1
+access_ophthalmology_dashboard,access_ophthalmology_dashboard,model_ophthalmology_dashboard,base.group_user,1,1,1,1
+access_ophthalmology_vitals,access_ophthalmology_vitals,model_ophthalmology_vitals,base.group_user,1,1,1,1
+access_ophthalmology_examination,ophthalmology.examination,model_ophthalmology_examination,base.group_user,1,1,1,1

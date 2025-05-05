@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- Client Action for Dashboard -->
+        <record id="action_dashboard" model="ir.actions.client">
+            <field name="name">Ophthalmology Dashboard</field>
+            <field name="tag">ophthalmology.OphthalmologyDashboard</field>
+        </record>
+
+        <!-- Window Actions for Patients, Appointments, Prescriptions -->
+        <record id="ophthalmology_action_patients" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">ophthalmology.patient</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="ophthalmology_action_appointments" model="ir.actions.act_window">
+            <field name="name">Appointments</field>
+            <field name="res_model">ophthalmology.appointment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="ophthalmology_action_prescriptions" model="ir.actions.act_window">
+            <field name="name">Prescriptions</field>
+            <field name="res_model">ophthalmology.prescription</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="ophthalmology_action_examinations" model="ir.actions.act_window">
+            <field name="name">Examinations</field>
+            <field name="res_model">ophthalmology.examination</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Root menu for ophthalmology -->
+        <menuitem id="ophthalmology.menu_root" name="Ophthalmology" sequence="1"/>
+
+        <!-- Dashboard Menu -->
+        <menuitem id="menu_ophthalmology_dashboard"
+                  name="Dashboard"
+                  parent="ophthalmology.menu_root"
+                  action="action_dashboard"
+                  sequence="1" />
+
+        <!-- Patients menu -->
+        <menuitem id="menu_ophthalmology_patients"
+                  name="Patients"
+                  parent="ophthalmology.menu_root"
+                  action="ophthalmology_action_patients"
+                  sequence="2" />
+
+        <!-- Appointments menu -->
+        <menuitem id="menu_ophthalmology_appointments"
+                  name="Appointments"
+                  parent="ophthalmology.menu_root"
+                  action="ophthalmology_action_appointments"
+                  sequence="3" />
+
+        <!-- Prescriptions menu -->
+        <menuitem id="menu_ophthalmology_prescriptions"
+                  name="Prescriptions"
+                  parent="ophthalmology.menu_root"
+                  action="ophthalmology_action_prescriptions"
+                  sequence="4" />
+
+        <!-- Examinations menu -->
+        <menuitem id="menu_ophthalmology_examinations"
+                  name="Examinations"
+                  parent="ophthalmology.menu_root"
+                  action="ophthalmology_action_examinations"
+                  sequence="5" />
+    </data>
+</odoo>

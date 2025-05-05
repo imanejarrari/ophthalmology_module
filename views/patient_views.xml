@@ -1,0 +1,142 @@
+<odoo>
+    <!-- Kanban View -->
+    <record id="view_patient_kanban" model="ir.ui.view">
+        <field name="name">ophthalmology.patient.kanban</field>
+        <field name="model">ophthalmology.patient</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column" create="true"
+                    decoration-danger="appointment_status == 'missing'"
+                    decoration-success="appointment_status == 'appointment'"
+                    decoration-warning="appointment_status == 'Upcoming'">
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content p-2">
+                                <div class="o_kanban_record_title mb-1">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+
+                                <div class="text-muted mb-1">
+                                    <i class="fa fa-user me-1" title="Gender"/> 
+                                    <field name="gender"/>
+                                </div>
+
+                                <div class="text-muted mb-1">
+                                    <i class="fa fa-birthday-cake me-1" title="Age"/>
+                                    <field name="age"/> years
+                                </div>
+
+                                <div class="text-muted mb-1">
+                                    <i class="fa fa-phone me-1" title="Phone Number"/> 
+                                    <field name="contact_number"/>
+                                </div>
+
+                                <div class="text-muted mb-1">
+                                    <i class="fa fa-envelope me-1" title="Email"/>
+                                    <field name="email"/>
+                                </div>
+
+                                <div class="text-muted mb-1">
+                                    <i class="fa fa-map-marker me-1" title="Address"/>
+                                    <field name="address"/>
+                                </div>
+
+                                <div class="text-muted mt-2">
+                                    <t t-if="record.appointment_status.raw_value == 'missing'">
+                                        <i class="fa fa-calendar me-1" style="color: red;" title="Missing Appointment"/>
+                                        <span style="color: red; font-weight: bold;">Missing</span>
+                                    </t>
+                                    <t t-elif="record.appointment_status.raw_value == 'appointment'">
+                                        <i class="fa fa-calendar me-1" style="color: green;" title="Today’s Appointment"/>
+                                        <span style="color: green; font-weight: bold;">Appointment</span>
+                                    </t>
+                                    <t t-elif="record.appointment_status.raw_value == 'Upcoming'">
+                                        <i class="fa fa-calendar me-1" style="color: blue;" title="Upcoming Appointment"/>
+                                        <span style="color: blue; font-weight: bold;">Upcoming</span>
+                                    </t>
+                                    <t t-else="">
+                                        <i class="fa fa-calendar me-1" style="color: gray;" title="No Status"/>
+                                        <span style="color: gray;font-weight: bold;" >No Status</span>
+                                    </t>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form View (unchanged) -->
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">ophthalmology.patient.form</field>
+        <field name="model">ophthalmology.patient</field>
+        <field name="arch" type="xml">
+            <form string="Patient">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="contact_number"/>
+                        <field name="email"/>
+                        <field name="address"/>
+                    </group>
+
+                    <notebook>
+                        <page string="General Health History">
+                            <field name="general_health_history"/>
+                        </page>
+                        <page string="Eye Health History">
+                            <field name="eye_health_history"/>
+                        </page>
+                        <page string="Appointments">
+                            <field name="appointment_ids">
+                                <list editable="bottom">
+                                    <field name="date"/>
+                                    <field name="doctor_name"/>
+                                    <field name="purpose"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Vitals">
+                            <field name="vitals_ids">
+                                <list editable="bottom">
+                                    <field name="date"/>
+                                    <field name="vision_right"/>
+                                    <field name="vision_left"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Prescriptions">
+                            <field name="prescription_ids">
+                                <list editable="bottom">
+                                    <field name="date_prescribed"/>
+                                    <field name="medications"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="ophthalmology_action_patients" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">ophthalmology.patient</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="view_patient_kanban"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first patient record
+            </p>
+        </field>
+    </record>
+</odoo>
