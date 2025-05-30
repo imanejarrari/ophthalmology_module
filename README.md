@@ -1,2 +1,1 @@
-# ophthalmology_module
-Yes, you can definiThis Ophthalmology Module for Odoo, developed in Odoo, is designed to streamline patient management, appointment scheduling, medical records, and prescription handling for ophthalmology practices.
+This module adds comprehensive ophthalmology management features to Odoo, allowing clinics to manage patients, appointments, examinations, prescriptions, and vitals in a streamlined way.
