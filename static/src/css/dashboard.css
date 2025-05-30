@@ -1,0 +1,319 @@
+/* Modern Dashboard styling */
+.ophthalmology-dashboard {
+    background-color: #f0f4f0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    color: #333;
+    display: block; 
+}
+
+/* Dashboard components styling */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem; 
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin: 10px;
+}
+
+.stats-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card .card-title {
+    color: #6c757d;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.stats-card .stats-value {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.stats-indicator {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.stats-indicator.up {
+    color: #28a745;
+}
+
+.stats-indicator.down {
+    color: #dc3545;
+}
+
+.stats-indicator i {
+    margin-right: 0.25rem;
+}
+
+/* Circular progress */
+.circular-progress {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+}
+
+.circular-progress svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circular-progress circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.circular-progress .progress-background {
+    stroke: #f0f0f0;
+}
+
+.circular-progress .progress-value {
+    stroke: #7bc67b;
+    stroke-dasharray: 283;
+    stroke-dashoffset: calc(283 - (283 * var(--percentage)) / 100);
+    transition: stroke-dashoffset 1s ease;
+}
+
+.circular-progress .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Chart card styling */
+.chart-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chart-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-card .card-header .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chart-period-selector .btn {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.chart-container {
+    flex: 1;
+    padding: 1rem;
+    position: relative;
+}
+
+/* Appointments styling */
+.bottom-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.appointments-column {
+    min-height: 400px;
+}
+
+.appointments-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.appointments-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.appointments-card .card-header .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.appointments-card .card-header .view-all {
+    font-size: 0.8rem;
+    color: #7E57C2;
+    text-decoration: none;
+}
+
+.appointments-card .card-header .view-all:hover {
+    text-decoration: underline;
+}
+
+.appointments-list {
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+.appointment-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+.appointment-item:hover {
+    background-color: #f8f9fa;
+}
+
+.appointment-time {
+    min-width: 70px;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.appointment-patient {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.patient-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-right: 0.75rem;
+}
+
+.patient-info {
+    flex: 1;
+}
+
+.patient-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.appointment-purpose {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.appointment-actions {
+    display: flex;
+}
+
+.appointment-actions button {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.appointment-actions button:hover {
+    color: #7E57C2;
+}
+
+@media (max-width: 768px) {
+    .appointment-time {
+        min-width: 60px;
+    }
+    
+    .patient-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Top section layout */
+.ophthalmology-dashboard .top-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ophthalmology-dashboard .stats-container {
+    flex: 1; /* Take full width now */
+}
+
+/* Middle section with two charts */
+.ophthalmology-dashboard .middle-section {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.ophthalmology-dashboard .charts-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.ophthalmology-dashboard .chart-column {
+    height: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .ophthalmology-dashboard .charts-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .ophthalmology-dashboard .chart-column {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-section {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+}

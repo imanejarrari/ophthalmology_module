@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="ophthalmology_external_layout">
+        <t t-call="web.html_container">
+            <div class="header">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="/ophthalmology/static/description/icon.png" style="max-height: 60px;"/>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h3>Eye Care Clinic</h3>
+                        <div>123 Vision Street, City</div>
+                        <div>Phone: (123) 456-7890</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article o_report_layout_standard">
+                <t t-raw="0"/>
+            </div>
+            
+            <div class="footer">
+                <!-- Custom footer -->
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span>Page </span><span class="page"/><span> of </span><span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+</odoo>

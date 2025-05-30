@@ -1,36 +1,44 @@
 {
     'name': 'Ophthalmology',
     'summary': "Manage patients, appointments, prescriptions, and reports for eye clinic",
-   'description': "This module is designed for ophthalmology clinics",
+    'description': "This module is designed for ophthalmology clinics",
     'author': "benjarrari",
     'email': "benjarrariimane@gmail.com",
     'category': 'Medical',
     'version': '0.1',
-    'depends': ['base', 'web','mail'], 
+    'depends': ['base', 'web', 'mail', 'calendar','im_livechat'],
     'data': [
+        'security/ophthalmology_security.xml',
         'security/ir.model.access.csv',
-       'views/menus.xml',
+        'security/record_rules.xml',
+        'data/sq.xml',
+        'data/livechat_data.xml',  
+        'views/menus.xml',
         'views/patient_views.xml',
         'views/appointment_views.xml',
-        'views/test_report_views.xml',
-        'views/prescription_views.xml',
         'views/vitals_views.xml',
-        'views/dashboard_views.xml',
         'views/examination_view.xml',
-        
+        'report/ophthalmology_layout.xml',
+        'report/prescription_template.xml',
+        'report/prescription_rapport.xml',
     ],
     'assets': {
-    'web.assets_backend': [
-        'ophthalmology/static/src/js/dashboard.js',
-    ],
-  },
-
- 
+        'web.report_assets_common': [
+            'ophthalmology/static/src/css/report_styles.css',
+        ],
+        'web.assets_backend': [
+            'ophthalmology/static/src/js/dashboard.js',
+            'ophthalmology/static/src/css/dashboard.css',
+            'ophthalmology/static/src/css/patient_list.css',
+            'ophthalmology/static/src/css/custom_style.css',
+            'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js',
+            'ophthalmology/static/src/js/internal_chat.js',
+        ],
+    },
     'demo': [
         'demo/demo.xml',
     ],
     'license': 'LGPL-3',
     'application': True,
     'installable': True,
- 
 }

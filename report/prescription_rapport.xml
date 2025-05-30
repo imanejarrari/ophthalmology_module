@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+        id="action_report_prescription_from_exam"
+        string="Prescription from Examination"
+        model="ophthalmology.examination"
+        report_type="qweb-pdf"
+        name="ophthalmology.report_prescription_document_from_exam"
+        file="ophthalmology.report_prescription_document_from_exam"
+        print_report_name="'Prescription - %s' % (object.patient_id.name)"
+    />
+</odoo>

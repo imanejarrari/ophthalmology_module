@@ -1,76 +1,28 @@
 <odoo>
-    <!-- Kanban View -->
-    <record id="view_patient_kanban" model="ir.ui.view">
-        <field name="name">ophthalmology.patient.kanban</field>
+    <record id="view_patient_list" model="ir.ui.view">
+        <field name="name">ophthalmology.patient.list</field>
         <field name="model">ophthalmology.patient</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_small_column" create="true"
-                    decoration-danger="appointment_status == 'missing'"
-                    decoration-success="appointment_status == 'appointment'"
-                    decoration-warning="appointment_status == 'Upcoming'">
-                <templates>
-                    <t t-name="card">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <div class="oe_kanban_content p-2">
-                                <div class="o_kanban_record_title mb-1">
-                                    <strong>
-                                        <field name="name"/>
-                                    </strong>
-                                </div>
+            <list  
+            
+            decoration-danger="appointment_status == 'Missed'"
+      decoration-success="appointment_status == 'Upcoming'"
+      decoration-warning="appointment_status == 'Today'">
+            
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="email"/>
 
-                                <div class="text-muted mb-1">
-                                    <i class="fa fa-user me-1" title="Gender"/> 
-                                    <field name="gender"/>
-                                </div>
 
-                                <div class="text-muted mb-1">
-                                    <i class="fa fa-birthday-cake me-1" title="Age"/>
-                                    <field name="age"/> years
-                                </div>
+                
+  <field name="appointment_status"/>
 
-                                <div class="text-muted mb-1">
-                                    <i class="fa fa-phone me-1" title="Phone Number"/> 
-                                    <field name="contact_number"/>
-                                </div>
 
-                                <div class="text-muted mb-1">
-                                    <i class="fa fa-envelope me-1" title="Email"/>
-                                    <field name="email"/>
-                                </div>
-
-                                <div class="text-muted mb-1">
-                                    <i class="fa fa-map-marker me-1" title="Address"/>
-                                    <field name="address"/>
-                                </div>
-
-                                <div class="text-muted mt-2">
-                                    <t t-if="record.appointment_status.raw_value == 'missing'">
-                                        <i class="fa fa-calendar me-1" style="color: red;" title="Missing Appointment"/>
-                                        <span style="color: red; font-weight: bold;">Missing</span>
-                                    </t>
-                                    <t t-elif="record.appointment_status.raw_value == 'appointment'">
-                                        <i class="fa fa-calendar me-1" style="color: green;" title="Today’s Appointment"/>
-                                        <span style="color: green; font-weight: bold;">Appointment</span>
-                                    </t>
-                                    <t t-elif="record.appointment_status.raw_value == 'Upcoming'">
-                                        <i class="fa fa-calendar me-1" style="color: blue;" title="Upcoming Appointment"/>
-                                        <span style="color: blue; font-weight: bold;">Upcoming</span>
-                                    </t>
-                                    <t t-else="">
-                                        <i class="fa fa-calendar me-1" style="color: gray;" title="No Status"/>
-                                        <span style="color: gray;font-weight: bold;" >No Status</span>
-                                    </t>
-                                </div>
-
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
+            </list>
         </field>
     </record>
 
-    <!-- Form View (unchanged) -->
     <record id="view_patient_form" model="ir.ui.view">
         <field name="name">ophthalmology.patient.form</field>
         <field name="model">ophthalmology.patient</field>
@@ -96,9 +48,9 @@
                         <page string="Appointments">
                             <field name="appointment_ids">
                                 <list editable="bottom">
-                                    <field name="date"/>
-                                    <field name="doctor_name"/>
-                                    <field name="purpose"/>
+                                    <field name="date" width="20%" />
+                                    <field name="doctor_name" width="20%"/>
+                                    <field name="purpose" width="20%"/>
                                 </list>
                             </field>
                         </page>
@@ -127,12 +79,11 @@
         </field>
     </record>
 
-    <!-- Action -->
     <record id="ophthalmology_action_patients" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="res_model">ophthalmology.patient</field>
-        <field name="view_mode">kanban,form</field>
-        <field name="view_id" ref="view_patient_kanban"/>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="view_id" ref="view_patient_list"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first patient record

@@ -1,55 +1,100 @@
 <odoo>
-  <!-- Tree View for Examinations -->
-  <record id="view_ophthalmology_examination_tree" model="ir.ui.view">
-    <field name="name">ophthalmology.examination.tree</field>
-    <field name="model">ophthalmology.examination</field>
-    <field name="arch" type="xml">
-      <list>
-        <field name="date"/>
-        <field name="patient_id"/>
-        <field name="doctor_name"/>
-        <field name="visual_acuity_right"/>
-        <field name="visual_acuity_left"/>
-        <field name="intraocular_pressure_right"/>
-        <field name="intraocular_pressure_left"/>
-      </list>
-    </field>
-  </record>
-
-  <!-- Form View for Examinations -->
-  <record id="view_ophthalmology_examination_form" model="ir.ui.view">
+  <record id="view_form_ophthalmology_examination" model="ir.ui.view">
     <field name="name">ophthalmology.examination.form</field>
     <field name="model">ophthalmology.examination</field>
     <field name="arch" type="xml">
-      <form>
+      <form string="Eye Examination">
+      
+         <header>
+          <button name="print_prescription"
+                  type="object"
+                  string="Print Prescription"
+                  class="btn-primary"
+                  icon="fa-print"/>
+        </header>
         <sheet>
           <group>
             <field name="date"/>
-            <field name="appointment_id"/>
-            <!-- Conditional Read-Only Logic -->
-            <field name="patient_id" readonly="1" groups="base.group_user" />
             <field name="doctor_name"/>
+            <field name="eye_selection"/>
+            <field name="patient_id"/>
+            <field name="appointment_id"/>
           </group>
-          <group string="Visual Acuity">
+
+          <group string="Measurements">
             <field name="visual_acuity_right"/>
             <field name="visual_acuity_left"/>
-          </group>
-          <group string="Intraocular Pressure">
             <field name="intraocular_pressure_right"/>
             <field name="intraocular_pressure_left"/>
           </group>
-          <field name="eye_condition_notes" widget="text"/>
+
+          <field name="eye_condition_notes" placeholder="Write additional notes here..."/>
           <field name="attachment_ids" widget="many2many_binary"/>
+
+          <group string="Prescriptions">
+            <field name="prescription_ids">
+              <list editable="bottom">
+                <field name="name"/>
+                <field name="date_prescribed"/>
+                <field name="medications"/>
+                <field name="notes"/>
+              </list>
+            </field>
+          </group>
         </sheet>
       </form>
     </field>
   </record>
 
-  <!-- Action for Examinations -->
-  <record id="ophthalmology_action_examinations" model="ir.actions.act_window">
+  <record id="view_kanban_ophthalmology_examination" model="ir.ui.view">
+    <field name="name">ophthalmology.examination.kanban</field>
+    <field name="model">ophthalmology.examination</field>
+    <field name="arch" type="xml">
+      <kanban class="o_kanban_mobile" sample="1" >
+        <field name="date"/>
+        <field name="doctor_name"/>
+        <field name="eye_selection"/>
+        <field name="patient_id"/>
+        <field name="appointment_id"/>
+        <field name="attachment_ids"/>
+        <templates  >
+          <t t-name="card" class="container" >
+            <div t-attf-class="oe_kanban_card oe_kanban_global_click" >
+              <div style="text-align: center; height: 120px; margin-bottom: 10px;" >
+                <img t-att-src="'/web/image/' + record.attachment_ids.raw_value[0]" 
+                     alt="Examination" 
+                     style="max-height: 120px; max-width: 100%; object-fit: contain;"/>
+              </div>
+              
+              <div style="text-align: center; margin-bottom: 8px;">
+                <strong><t t-esc="record.eye_selection.value"/>  Examination</strong>
+              </div>
+              
+              <div style="text-align: center; margin-bottom: 10px;">
+                <span class="badge rounded-pill" 
+                    t-attf-class="bg-#{record.eye_selection.raw_value == 'left' ? 'primary' : (record.eye_selection.raw_value == 'right' ? 'success' : 'warning')}">
+                  <t t-esc="record.eye_selection.value"/> Eye
+                </span>
+              </div>
+              
+              <div style="font-size: 12px; text-align: center;">
+                <div><strong>Patient: </strong><span><t t-esc="record.patient_id.value"/></span></div>
+                <div><strong>Date: </strong><span><t t-esc="record.date.value"/></span></div>
+                <div><strong>Doctor: </strong><span><t t-esc="record.doctor_name.value"/></span></div>
+                <div t-if="record.appointment_id.value"><strong>Appointment: </strong><span><t t-esc="record.appointment_id.value"/></span></div>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record id="action_ophthalmology_examination" model="ir.actions.act_window">
     <field name="name">Examinations</field>
     <field name="res_model">ophthalmology.examination</field>
-    <field name="view_mode">list,form</field>
-    <field name="context">{}</field>
+    <field name="view_mode">kanban,form</field>
+    <field name="view_id" ref="view_kanban_ophthalmology_examination"/>
   </record>
+
 </odoo>

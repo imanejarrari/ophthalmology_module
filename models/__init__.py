@@ -4,3 +4,6 @@ from . import appointment
 from . import vitals
 from . import prescription
 from . import dashboard
+from . import livechat
+from . import res_users
+from . import mail_message

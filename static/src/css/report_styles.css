@@ -1,0 +1,45 @@
+.prescription-header {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.prescription-section {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.doctor-signature {
+    margin-top: 50px;
+    border-top: 1px solid #000;
+    width: 200px;
+    text-align: center;
+}
+
+.examination-fee {
+    margin-top: 20px;
+    border: 1px solid #e74c3c;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fadbd8;
+}
+
+.examination-fee h4 {
+    color: #c0392b;
+    margin-bottom: 10px;
+}
+
+.examination-fee .price {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.examination-fee .note {
+    font-size: 12px;
+    color: #7f8c8d;
+    text-align: right;
+    margin-top: 5px;
+}
